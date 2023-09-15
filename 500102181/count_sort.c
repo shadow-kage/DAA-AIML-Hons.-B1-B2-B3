@@ -19,14 +19,14 @@ void count_sort(int *arr, int n) // Count sort function
     int max = maximum(arr, n); // Giving maximum element in array
     int *count = (int *)malloc((max + 1) * sizeof(int)); // Creating an auxilary array of size equal to (maximum_element+1)
     for (i = 0; i <= max; i++)
-        count[i] = 0;
+        count[i] = 0; // Initializing auxilary array with each element as 0
     for (i = 0; i < n; i++)
-        count[arr[i]] = count[arr[i]] + 1;
+        count[arr[i]] = count[arr[i]] + 1; // Pushing elements in count array(auxilary)
     i=0;
     j=0;    
-    while (i<=max)
+    while (i<=max) 
     {
-        if(count[i]>0)
+        if(count[i]>0) // Pushing elements back in main array in sorted form
         {
             arr[j] = i;
             count[i]--;
@@ -38,7 +38,7 @@ void count_sort(int *arr, int n) // Count sort function
      
 }
 
-void print_Array(int *arr, int n)
+void print_Array(int *arr, int n) // Function to print array
 {
     for (int i = 0; i < n; i++)
         printf("%d\t", arr[i]);
