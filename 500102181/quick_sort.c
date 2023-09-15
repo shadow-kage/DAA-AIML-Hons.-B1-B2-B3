@@ -1,46 +1,44 @@
 #include <stdio.h>
-#include <pbPlots.h>
-#include <supportLib.h>
 
-void print_array(int *arr, int n)
+void print_array(int *arr, int n) // Function for printing array
 {
     for (int i = 0; i < n; i++)
         printf("%d\t", arr[i]);
 }
 
-int partition(int arr[], int low, int high)
+int partition(int arr[], int low, int high) // For returning pivot position after each swap
 {
     int pivot = arr[low];
     int i = low + 1;
     int j = high;
     int temp;
-    do
+    do // used do while for atleast run this once
     {
-        while (arr[i] <= pivot)
+        while (arr[i] <= pivot) // For finding element greater than pivot
             i++;
-        while (arr[j] > pivot)
+        while (arr[j] > pivot) // For finding element smaller than pivot
             j--;
         if (i < j)
         {
-            temp = arr[i];
+            temp = arr[i]; // Swapping ith and jth element until i and j are not overlapped
             arr[i] = arr[j];
             arr[j] = temp;
         }
     } while (i < j);
-    temp = arr[low];
+    temp = arr[low];  // Swapping pivot and jth element after i and j crossed each other
     arr[low] = arr[j];
     arr[j] = temp;
-    return j;
+    return j; //Returning pivot
 }
 
-void quick_sort(int arr[], int low, int high)
+void quick_sort(int arr[], int low, int high) // for making sub arrays
 {
     int partitionIndex;
     if (low < high)
     {
-        partitionIndex = partition(arr, low, high);
-        quick_sort(arr, low, partitionIndex - 1);
-        quick_sort(arr, partitionIndex + 1, high);
+        partitionIndex = partition(arr, low, high); // Position of pivot
+        quick_sort(arr, low, partitionIndex - 1); // Dividing array in first half
+        quick_sort(arr, partitionIndex + 1, high); // Dividing array in second half
     }
 }
 
