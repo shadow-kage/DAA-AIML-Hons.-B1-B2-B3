@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+#include <limits.h> // As the name suggests this header file is for limits of datatypes
 
 int maximum(int *arr, int n)
 {
-    int max = INT_MIN;
-    for (int i = 0; i < n; i++)
+    int max = INT_MIN; // Min value an interger can hold = –2147483648 for a 32-bits
+    for (int i = 0; i < n; i++) // Finding maximum element in array 
     {
         if (max < arr[i])
             max = arr[i];
     }
-    return max;
+    return max; // Returning maximum element
 }
 
-void count_sort(int *arr, int n)
+void count_sort(int *arr, int n) // Count sort function
 {
     int i, j;
-    int max = maximum(arr, n);
-    int *count = (int *)malloc((max + 1) * sizeof(int));
+    int max = maximum(arr, n); // Giving maximum element in array
+    int *count = (int *)malloc((max + 1) * sizeof(int)); // Creating an auxilary array of size equal to (maximum_element+1)
     for (i = 0; i <= max; i++)
         count[i] = 0;
     for (i = 0; i < n; i++)
