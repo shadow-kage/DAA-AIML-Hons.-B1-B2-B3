@@ -14,13 +14,13 @@ void sort(float *N, float *P, float *W, int n)
                 k = j + 1;
             }
         }
-        swap = N[i];
+        swap = N[i]; // Swapping P/W for max value of Profit/Weight
         N[i] = N[k];
         N[k] = swap;
-        swap = P[i];
+        swap = P[i]; // Swapping Profit corresponding to Profit/Weight
         P[i] = P[k];
         P[k] = swap;
-        swap = W[i];
+        swap = W[i]; // Swapping Weight corresponding to Profit/Weight
         W[i] = W[k];
         W[k] = swap;
     }
@@ -31,18 +31,18 @@ void greedy(float *P, float *W, float *N, int n, float C)
     float profit = 0, weight = C, totalWeight = 0;
     for (int i = 0; i < n; i++)
     {
-        if (weight == 0)
+        if (weight == 0) // We will exit when our container will run out of space
             break;
 
-        else if (W[i] <= weight)
+        else if (W[i] <= weight) // Adding object which has max Profit/weight
         {
-            weight -= W[i];
-            profit += P[i];
-            totalWeight += W[i];
+            weight -= W[i]; // Remaining capacity after each insertion
+            profit += P[i]; // Profit earned after each insertion
+            totalWeight += W[i]; // Total weight which has been put in container until now
             printf("1 Added weight %f and profit %f : \n", W[i], P[i]);
             printf("\n=======================================================\n");
         }
-        else
+        else // This for fractional part
         {
             profit += N[i] * weight;
             totalWeight += weight;
@@ -57,13 +57,13 @@ void greedy(float *P, float *W, float *N, int n, float C)
 
 int main()
 {
-    float C;
-    int n;
+    float C; // Size of container
+    int n; // Number of objects
     printf("Enter container weight : "); // Entering size of container
     scanf("%f", &C);
     printf("Enter number of objects you have : ");
     scanf("%d", &n);
-    float P[n], W[n], N[n];
+    float P[n], W[n], N[n]; // P[n] = Profit array, W[n] = Weight array and N[n] = Profit/Weight array
     for (int i = 0; i < n; i++)
     {
         printf("Enter Profit with object %d : ", i + 1);
