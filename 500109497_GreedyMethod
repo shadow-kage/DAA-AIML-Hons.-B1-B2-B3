@@ -1,0 +1,45 @@
+//Code for Greedy method  in c language
+#include <stdio.h>
+int main(){
+    int n;      //Number of objects
+    printf("Enter number of object\n");
+    scanf("%d",&n);
+    int w=15;         //Total bag capacity
+    int profit[n];
+    float weight[n];
+    float pro_per_weight[n];  //profit per weight
+    //Taking input from user of profit and weight
+    for(int i=0;i<n;i++){
+        printf("Enter profit and weight of %d object\n",i);
+        scanf("%d",&profit[i]);
+        scanf("%f",&weight[i]);
+        //Calculating profit per weight 
+        pro_per_weight[i]=(float)profit[i]/weight[i];
+    }
+    float maxp=0;       //Total net profit
+   
+    while(w!=0){
+        int max=0;      //Finding maximum profit per weight
+        for(int i=0;i<n;i++){
+            if(pro_per_weight[i]>pro_per_weight[max]){
+                max=i;
+            }
+        }
+        
+        pro_per_weight[max]=0;  //For finding next highest profit
+        if(weight[max]<=w){
+            maxp+=profit[max];
+            w-=weight[max];
+            weight[max]=0;
+        }
+        else{
+            //bag is not empty to maximise our profit we are taking patial weight other item
+            maxp+=((float)profit[max]/weight[max])*w;
+            weight[max]-=w;
+            w=0;
+        }
+    }
+    for(int i=0;i<n;i++)
+    printf("%.2f ",weight[i]);
+    printf("%.2f",maxp);
+}
