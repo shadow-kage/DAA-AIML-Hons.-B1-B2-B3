@@ -1,3 +1,4 @@
+// KnapSack code without structure and with sorting
 #include <stdio.h>
 
 void sort(float *N, float *W, float *P, int n) //To sort elements in descending order according to profit/weight
